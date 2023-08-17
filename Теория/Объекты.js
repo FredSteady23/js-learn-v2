@@ -70,22 +70,22 @@ const logger = {
         console.log('Object keys: ', Object.keys(this));
     },
     keysAndValues(){
-        Object.keys(this).forEach(key=>{
+        Object.keys(this).forEach(key=>{ // Стрелочная функция не создает свой контекст
             console.log(`"${key}": ${this[key]}`)
         })
     },
     withParams(top = false, between = false, bottom = false){
         if(top){
-            console.log('--------Start---------')
+            console.log('--------Start---------');
         }
         Object.keys(this).forEach((key, index, array)=>{
             console.log(`"${key}": ${this[key]}`)
             if(between && index !== array.length-1){
-                console.log('--------Between---------')
+                console.log('--------Between---------');
             }
         });
         if(bottom){
-            console.log('--------Bottom---------')
+            console.log('--------Bottom---------');
         }
     }
 }
@@ -96,3 +96,22 @@ const logger = {
 // logger.keysAndValues.call(person);
 
 logger.withParams.call(person, true, true, true);
+
+// --------Start---------
+// "name": Sagyndyk
+// --------Between---------
+// "age": 21
+// --------Between---------
+// "isProgrammer": true
+// --------Between---------
+// "languages": ru,en,kz
+// --------Between---------
+// "greet": greet(){
+//         console.log('greet from person');
+//     }
+// --------Between---------
+// "info": info(){
+//         // console.log('this:', this);
+//         console.info('информация про человека по имени:', this.name);
+//     }
+// --------Bottom---------
