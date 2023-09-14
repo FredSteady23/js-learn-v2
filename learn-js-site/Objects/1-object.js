@@ -77,7 +77,50 @@ user.sayHi();
 function makeUser(){
     return{
         name:'John',
-        ref:this
-        //
+        ref(){
+            return this;
+        }
+    };
+}
+let user = makeUser();
+console.log(user.ref().name);
+
+// 2 задача
+let calc = {
+    read(a, b){
+        this.a = a;
+        this.b = b;
+    },
+    sum(){
+        return this.a + this.b;
+    },
+    mul(){
+        return this.a * this.b;
     }
 }
+console.log(calc.read(5, 2));
+console.log(calc.sum());
+console.log(calc.mul());
+
+// 3 задача
+let ladder = {
+    step:0,
+    up(){
+        this.step++;
+        return this;
+    },
+    down(){
+        this.step--;
+        return this;
+    },
+    showStep(){ // показывает текущую ступеньку
+        console.log(this.step);
+        return this;
+    }
+};
+ladder.up().up().down().showStep().down().showStep();
+// ladder.up();
+// ladder.down();
+// ladder.showStep(); // 1
+// ladder.down()
+// ladder.showStep() // 0
